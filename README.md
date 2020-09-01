@@ -22,4 +22,17 @@ cd apache-druid-$DRUID_VERSION
 ```
 
 ## Open the Druid console
-Visit (http://localhost:8888)[http://localhost:8888] in browser.
+Visit [http://localhost:8888](http://localhost:8888) in browser.
+
+## Running Druid in Docker
+```
+cd docker
+docker-compose up
+```
+Visit [http://localhost:8888](http://localhost:8888) in browser.
+
+## Prepare PostgreSQL sample OLTP database
+### TODO
+
+## Ingest data from OLTP to Druid database
+### TODO
