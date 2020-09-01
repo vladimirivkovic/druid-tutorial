@@ -32,7 +32,11 @@ docker-compose up
 Visit [http://localhost:8888](http://localhost:8888) in browser.
 
 ## Prepare PostgreSQL sample OLTP database
-### TODO
+AdventureWorks OLTP sample available (here)[https://github.com/morenoh149/postgresDBSamples/tree/master/adventureworks].
+```
+docker exec -it postgres bash
+```
+Then run command from oltp-db/load-data.sh.
 
 ## Ingest data from OLTP to Druid database
 ### TODO
