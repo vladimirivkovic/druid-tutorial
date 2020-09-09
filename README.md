@@ -27,6 +27,11 @@ Visit [http://localhost:8888](http://localhost:8888) in browser.
 ## Running Druid in Docker
 ```
 cd docker
+
+mkdir storage
+chmod 755 storage
+sudo chown 1000:1000 storage
+
 docker-compose up
 ```
 Visit [http://localhost:8888](http://localhost:8888) in browser.
