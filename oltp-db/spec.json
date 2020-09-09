@@ -1,68 +1,66 @@
 {
-    "type": "index_parallel",
-    "spec": {
-      "dataSchema": {
-        "dataSource": "postgres_test",
-        "timestampSpec": {
-          "column": "startdate"
-        },
-        "dimensionsSpec": {
-          "dimensions": [
-            "workerid",
-            "productid",
-            "orderqty",
-            "scrappedqty",
-            "enddate",
-            "duedate",
-            "scrapreasonid",
-            "modifieddate"
-          ]
-        },
-        "metricsSpec": [
+  "type": "index_parallel",
+  "spec": {
+    "dataSchema": {
+      "dataSource": "postgres_aw_workorder",
+      "timestampSpec": {
+        "column": "startdate"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+          "workerid",
+          "productid",
+          "orderqty",
+          "scrappedqty",
           {
-            "type": "count",
-                "name": "count"
-              },
-              {
-                "type": "doubleSum",
-                "name": "added",
-                "fieldName": "added"
-              },
-              {
-                "type": "doubleSum",
-                "name": "deleted",
-                "fieldName": "deleted"
-              },
-              {
-                "type": "doubleSum",
-                "name": "delta",
-                "fieldName": "delta"
-              }
-          ],
-          "granularitySpec": {
-            "segmentGranularity": "DAY",
-            "queryGranularity": "second",
-            "intervals" : [ "2011-06-01/2014-06-06" ]
-          }
-      },
-      "ioConfig": {
-        "type": "index_parallel",
-        "inputSource": {
-          "type": "sql",
-          "database": {
-              "type": "postgresql",
-              "connectorConfig": {
-                  "connectURI": "jdbc:postgresql://postgres:5432/adventureworks",
-                  "user": "druid",
-                  "password": "FoolishPassword"
-              }
+            "type": "long",
+            "name": "enddate"
           },
-          "sqls": ["SELECT * FROM production.workorder"]
-        }
+          {
+            "type": "long",
+            "name": "duedate"
+          },
+          "scrapreasonid",
+          {
+            "type": "long",
+            "name": "modifieddate"
+          }
+        ]
       },
-      "tuningconfig": {
-          "type": "index_parallel",
-          "maxNumConcurrentSubTasks": 2
+      "metricsSpec": [
+        {
+          "type": "count",
+          "name": "count"
+        }
+      ],
+      "granularitySpec": {
+        "segmentGranularity": "MONTH",
+        "queryGranularity": "DAY",
+        "intervals": [
+          "2011-06-01/2014-06-06"
+        ]
       }
+    },
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "sql",
+        "database": {
+          "type": "postgresql",
+          "connectorConfig": {
+            "connectURI": "jdbc:postgresql://postgres:5432/adventureworks",
+            "user": "druid",
+            "password": "FoolishPassword"
+          }
+        },
+        "sqls": [
+          "SELECT * FROM production.workorder"
+        ]
+      }
+    },
+    "tuningconfig": {
+      "type": "index_parallel",
+      "maxNumConcurrentSubTasks": 2
     }
   }
+}
