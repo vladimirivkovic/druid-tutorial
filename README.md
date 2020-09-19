@@ -39,9 +39,12 @@ Visit [http://localhost:8888](http://localhost:8888) in browser.
 ## Prepare PostgreSQL sample OLTP database
 AdventureWorks OLTP sample available (here)[https://github.com/morenoh149/postgresDBSamples/tree/master/adventureworks].
 ```
-docker exec -it postgres bash
+docker cp oltp-db/ postgres:/home
+docker exec -it postgres bash -m "/home/oltp-db/load-data.sh"
 ```
 Then run command from oltp-db/load-data.sh.
 
 ## Ingest data from OLTP to Druid database
-### TODO
+```
+curl -X 'POST' -H 'Content-Type:application/json' -d @oltp-db/spec.json 'http://localhost:8888/druid/indexer/v1/task'
+```
