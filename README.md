@@ -37,7 +37,7 @@ docker-compose up
 Visit [http://localhost:8888](http://localhost:8888) in browser.
 
 ## Prepare PostgreSQL sample OLTP database
-AdventureWorks OLTP sample available (here)[https://github.com/morenoh149/postgresDBSamples/tree/master/adventureworks].
+AdventureWorks OLTP sample available [here](https://github.com/morenoh149/postgresDBSamples/tree/master/adventureworks).
 ```
 docker cp oltp-db/ postgres:/home
 docker exec -it postgres bash -m "/home/oltp-db/load-data.sh"
@@ -56,3 +56,7 @@ curl -X 'POST' -H 'Content-Type:application/json' -d @oltp-db/spec.json 'http://
 ### Dimensions and Metrics
 
 ## Querying - TODO
+
+## Updating existing data - TODO
+
+## Combination with Metabase - TODO
