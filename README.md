@@ -44,7 +44,15 @@ docker exec -it postgres bash -m "/home/oltp-db/load-data.sh"
 ```
 Then run command from oltp-db/load-data.sh.
 
-## Ingest data from OLTP to Druid database
+## Ingestion
+### Ingest data from OLTP to Druid database
 ```
 curl -X 'POST' -H 'Content-Type:application/json' -d @oltp-db/spec.json 'http://localhost:8888/druid/indexer/v1/task'
 ```
+
+### Ingestion Schema - TODO
+
+## Rollup - TODO
+### Dimensions and Metrics
+
+## Querying - TODO
