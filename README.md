@@ -57,12 +57,22 @@ Schema specifications:
 * index: `index_parallel`
 * input source type: `sql`
 
-### Dimensions and Metrics
-Dimensions - columns from SQL query.
-Metrics - columns that are stored in an aggregated form.
-NOTE: Dimension and metric name specification is case insensitive.
+### Primary timestamp
+Druid schemas must always include a primary timestamp. It is used for partitioning and sorting data.
+It is specified in the `timestampSpec`.
 
-## Rollup - TODO
+### Dimensions
+Dimensions - columns from SQL query, specified in the `dimensionSpec`.
+
+### Metrics
+Metrics - columns that are stored in an aggregated form, specified in the `metricSpec`.
+
+NOTE: Dimension and metric names are case insensitive.
+
+## Rollup
+Rollup is a form of summarization or pre-aggregation.
+When rollup is enabled, then any rows that have identical dimensions and timestamp to each other (after `queryGranularity`-based truncation) can be collapsed, or rolled up, into a single row in Druid.
+Rollup is controlled by the `rollup` setting in the `granularitySpec`. By default, it is `true` (enabled).
 
 ## Querying - TODO
 
