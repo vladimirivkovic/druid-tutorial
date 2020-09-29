@@ -1,0 +1,75 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "dataSchema": {
+      "dataSource": "postgres_aw_routing",
+      "timestampSpec": {
+        "column": "actualstartdate"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+          {
+            "type": "long",
+            "name": "workorderid"
+          },
+          "productname",
+          "locationname",
+          {
+            "type": "long",
+            "name":  "orderqty"
+          },
+          {
+            "type": "long",
+            "name":  "operationsequence"
+          },
+          {
+            "type": "double",
+            "name":  "plannedcost"
+          },
+          {
+            "type": "double",
+            "name":  "actualcost"
+          },
+          {
+            "type": "double",
+            "name":  "actualresourcehrs"
+          }
+        ]
+      },
+      "metricsSpec": [
+        {
+          "type": "count",
+          "name": "count"
+        }
+      ],
+      "granularitySpec": {
+        "segmentGranularity": "MONTH",
+        "queryGranularity": "DAY",
+        "intervals": [
+          "2010-01-01/2015-01-01"
+        ]
+      }
+    },
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "sql",
+        "database": {
+          "type": "postgresql",
+          "connectorConfig": {
+            "connectURI": "jdbc:postgresql://postgres:5432/adventureworks",
+            "user": "druid",
+            "password": "FoolishPassword"
+          }
+        },
+        "sqls": [
+          "SELECT workOrder.workOrderId AS workOrderId, product.name AS productName, location.name AS locationName, workOrder.orderQty, operationSequence, plannedCost, actualCost, actualStartDate, actualResourceHrs FROM production.workOrderRouting wor JOIN production.location ON wor.locationId = location.locationId JOIN production.product ON wor.productId = product.productId JOIN production.workOrder ON wor.workOrderId = workOrder.workOrderId"
+        ]
+      }
+    },
+    "tuningconfig": {
+      "type": "index_parallel",
+      "maxNumConcurrentSubTasks": 2
+    }
+  }
+}

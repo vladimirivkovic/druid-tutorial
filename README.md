@@ -32,6 +32,7 @@ mkdir storage
 chmod 755 storage
 sudo chown 1000:1000 storage
 
+export DRUID_VERSION=0.19.0
 docker-compose up
 ```
 Visit [http://localhost:8888](http://localhost:8888) in browser.
@@ -47,13 +48,21 @@ Then run command from oltp-db/load-data.sh.
 ## Ingestion
 ### Ingest data from OLTP to Druid database
 ```
-curl -X 'POST' -H 'Content-Type:application/json' -d @oltp-db/spec.json 'http://localhost:8888/druid/indexer/v1/task'
+curl -X 'POST' -H 'Content-Type:application/json' -d @spec/spec-wo.json 'http://localhost:8888/druid/indexer/v1/task'
 ```
 
-### Ingestion Schema - TODO
+### Ingestion Schema
+Sample ingestion schema specifications are in `spec` directory.
+Schema specifications:
+* index: `index_parallel`
+* input source type: `sql`
+
+### Dimensions and Metrics
+Dimensions - columns from SQL query.
+Metrics - columns that are stored in an aggregated form.
+NOTE: Dimension and metric name specification is case insensitive.
 
 ## Rollup - TODO
-### Dimensions and Metrics
 
 ## Querying - TODO
 
