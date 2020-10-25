@@ -2,20 +2,38 @@
   "type": "index_parallel",
   "spec": {
     "dataSchema": {
-      "dataSource": "postgres_aw_workorder",
+      "dataSource": "postgres_aw_workorder_rollup",
       "timestampSpec": {
         "column": "startdate"
       },
       "dimensionsSpec": {
         "dimensions": [
-          "workorderid",
-          "productid",
-          "orderqty"
+          "productid"
         ]
       },
-      "metricsSpec": [],
+      "metricsSpec": [
+        {
+          "type": "count",
+          "name": "count"
+        },
+        { 
+          "type": "doubleSum", 
+          "name": "orderqty_sum", 
+          "fieldName": "orderqty" 
+        },
+        { 
+          "type": "doubleSum", 
+          "name": "scrappedqty_sum", 
+          "fieldName": "scrappedqty" 
+        }
+      ],
       "granularitySpec": {
-        "rollup": false
+        "segmentGranularity": "month",
+        "queryGranularity": "day",
+        "intervals": [
+          "2011-06-01/2014-06-06"
+        ],
+        "rollup": true
       }
     },
     "ioConfig": {
@@ -31,7 +49,7 @@
           }
         },
         "sqls": [
-          "SELECT startDate, workOrderId, productId, orderQty FROM production.workorder"
+          "SELECT startDate, productId, orderQty, scrappedQty FROM production.workorder"
         ]
       }
     },
