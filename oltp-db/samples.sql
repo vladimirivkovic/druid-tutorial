@@ -19,3 +19,12 @@ SELECT
     -- WHERE p2.name IS NOT NULL and p1.name IS NOT NULL
     LIMIT 10;
         
+select 
+	workorderid, startdate, orderqty, w.productid, 
+	p.name as productname, psc.name as subcategory, pc.name as category
+from 
+	production.workorder w 
+	join production.product p on w.productid = p.productid 
+	join production.productsubcategory psc on p.productsubcategoryid = psc.productsubcategoryid 
+	join production.productcategory pc on psc.productcategoryid  = pc.productcategoryid;
+
