@@ -80,8 +80,11 @@ When rollup is enabled, then any rows that have identical dimensions and timesta
 Rollup is controlled by the `rollup` setting in the `granularitySpec`. By default, it is `true` (enabled).
 
 ## Partitioning - TODO
+PartitionsSpec is used to describe the secondary partitioning method.
+Dynamic, hash-based, and range-based partitioning methods are available.
 
 ## Querying - TODO
+Apache Druid supports two query languages: Druid SQL and native queries.
 
 ## Updating existing data - TODO
 
@@ -89,6 +92,5 @@ Rollup is controlled by the `rollup` setting in the `granularitySpec`. By defaul
 Permanent deletion of a Druid segment has two steps:
 - The segment must first be marked as "unused". This occurs when a user manually disables a segment through the Coordinator API.
 - After segments have been marked as "unused", a Kill Task will delete any "unused" segments from Druid's metadata store as well as deep storage.
-
 
 ## Combination with Metabase - TODO

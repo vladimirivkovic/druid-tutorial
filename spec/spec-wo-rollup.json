@@ -2,7 +2,7 @@
   "type": "index_parallel",
   "spec": {
     "dataSchema": {
-      "dataSource": "postgres_aw_workorder_rollup",
+      "dataSource": "workorder_rollup",
       "timestampSpec": {
         "column": "startdate"
       },

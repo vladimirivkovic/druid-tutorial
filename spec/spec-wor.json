@@ -2,7 +2,7 @@
   "type": "index_parallel",
   "spec": {
     "dataSchema": {
-      "dataSource": "postgres_aw_routing",
+      "dataSource": "wo_routing",
       "timestampSpec": {
         "column": "actualstartdate"
       },
