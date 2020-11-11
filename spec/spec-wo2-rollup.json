@@ -2,13 +2,16 @@
   "type": "index_parallel",
   "spec": {
     "dataSchema": {
-      "dataSource": "workorder_rollup",
+      "dataSource": "workorder2_rollup",
       "timestampSpec": {
         "column": "startdate"
       },
       "dimensionsSpec": {
         "dimensions": [
-          "productid"
+          "productid",
+          "productname",
+          "subcategory",
+          "category"
         ]
       },
       "metricsSpec": [
@@ -46,7 +49,7 @@
           }
         },
         "sqls": [
-          "SELECT startDate, productId, orderQty, scrappedQty FROM production.workorder"
+          "select workorderid, startdate, orderqty, scrappedqty, w.productid, p.name as productname, psc.name as subcategory, pc.name as category from production.workorder w join production.product p on w.productid = p.productid join production.productsubcategory psc on p.productsubcategoryid = psc.productsubcategoryid join production.productcategory pc on psc.productcategoryid = pc.productcategoryid"
         ]
       }
     },
