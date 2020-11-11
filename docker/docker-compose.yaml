@@ -128,3 +128,9 @@ services:
       - router
     env_file:
       - environment
+
+  metabase:
+    image: metabase/metabase
+    container_name: metabase
+    ports:
+      - "3000:3000"
