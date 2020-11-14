@@ -31,8 +31,8 @@
         }
       ],
       "granularitySpec": {
-        "segmentGranularity": "month",
-        "queryGranularity": "day",
+        "segmentGranularity": "MONTH",
+        "queryGranularity": "DAY",
         "rollup": true
       }
     },

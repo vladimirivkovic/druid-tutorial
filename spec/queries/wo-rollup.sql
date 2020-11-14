@@ -24,8 +24,8 @@ ORDER BY "orderqty_total" DESC
 
 SELECT
   TIME_FLOOR(__time, 'P7D') AS "week",
-  SUM("scrappedqty_sum")/SUM("orderqty_sum") AS "scrapped_ratio"
+  SUM("scrappedqty_sum")/SUM("orderqty_sum") AS "scrap_rate"
 FROM "workorder_rollup"
 GROUP BY 1
-ORDER BY "scrapped_ratio" DESC
+ORDER BY "scrap_rate" DESC
 

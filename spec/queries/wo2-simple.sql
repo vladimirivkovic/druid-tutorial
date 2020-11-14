@@ -4,7 +4,7 @@ SELECT
 FROM "workorder2"
 GROUP BY 1
 ORDER BY "qty" DESC
-LIMIT 10
+
 
 SELECT
   "productname",
@@ -13,6 +13,8 @@ FROM "workorder2"
 WHERE category = 'Bikes'
 GROUP BY 1
 ORDER BY "Count" DESC
+LIMIT 10
+
 
 SELECT
   "subcategory",
@@ -21,6 +23,7 @@ SELECT
 FROM "workorder2"
 GROUP BY 1, 2
 ORDER BY "Count" DESC
+
 
 SELECT
   "subcategory",
