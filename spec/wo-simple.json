@@ -15,6 +15,7 @@
       },
       "metricsSpec": [],
       "granularitySpec": {
+        "segmentGranularity": "DAY",
         "rollup": false
       }
     },

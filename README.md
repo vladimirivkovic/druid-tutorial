@@ -48,7 +48,7 @@ Then run command from oltp-db/load-data.sh.
 ## Ingestion
 ### Ingest data from OLTP to Druid database
 ```
-curl -X 'POST' -H 'Content-Type:application/json' -d @spec/spec-wo.json 'http://localhost:8888/druid/indexer/v1/task'
+curl -X 'POST' -H 'Content-Type:application/json' -d @spec/wo-simple.json 'http://localhost:8888/druid/indexer/v1/task'
 ```
 
 ### Ingestion Schema
@@ -79,18 +79,16 @@ Rollup is a form of summarization or pre-aggregation.
 When rollup is enabled, then any rows that have identical dimensions and timestamp to each other (after `queryGranularity`-based truncation) can be collapsed, or rolled up, into a single row in Druid.
 Rollup is controlled by the `rollup` setting in the `granularitySpec`. By default, it is `true` (enabled).
 
-## Partitioning - TODO
+## Partitioning
 PartitionsSpec is used to describe the secondary partitioning method.
 Dynamic, hash-based, and range-based partitioning methods are available.
 
-## Querying - TODO
+## Querying
 Apache Druid supports two query languages: Druid SQL and native queries.
-
-## Updating existing data - TODO
 
 ## Deleting data
 Permanent deletion of a Druid segment has two steps:
 - The segment must first be marked as "unused". This occurs when a user manually disables a segment through the Coordinator API.
 - After segments have been marked as "unused", a Kill Task will delete any "unused" segments from Druid's metadata store as well as deep storage.
 
-## Combination with Metabase - TODO
+## Druid with Metabase - TODO
