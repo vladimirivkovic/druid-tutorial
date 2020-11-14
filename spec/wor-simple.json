@@ -36,18 +36,10 @@
           }
         ]
       },
-      "metricsSpec": [
-        {
-          "type": "count",
-          "name": "count"
-        }
-      ],
+      "metricsSpec": [],
       "granularitySpec": {
-        "segmentGranularity": "MONTH",
-        "queryGranularity": "DAY",
-        "intervals": [
-          "2010-01-01/2015-01-01"
-        ]
+        "segmentGranularity": "DAY",
+        "rollup": false
       }
     },
     "ioConfig": {
