@@ -30,7 +30,7 @@ cd docker
 
 mkdir storage
 chmod 755 storage
-sudo chown 1000:1000 storage
+chown 1000:1000 storage
 
 export DRUID_VERSION=0.19.0
 docker-compose up
@@ -90,5 +90,3 @@ Apache Druid supports two query languages: Druid SQL and native queries.
 Permanent deletion of a Druid segment has two steps:
 - The segment must first be marked as "unused". This occurs when a user manually disables a segment through the Coordinator API.
 - After segments have been marked as "unused", a Kill Task will delete any "unused" segments from Druid's metadata store as well as deep storage.
-
-## Druid with Metabase - TODO
